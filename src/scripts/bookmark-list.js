@@ -66,28 +66,95 @@ const generateBookmarkElement = (bookmark) => {
     if (!bookmark.expand) {
       return `
         <li class="js-bookmark-item" data-item-id="${bookmark.id}">
-          <div class="top-half">
-            <h2>${bookmark.title}</h1>
+          <div class="top-half" tabindex=0>
+            <h2>${bookmark.title}</h2>
           </div>
           <div class="bottom-half">
-            <h3>${bookmark.rating}</h3>
+            <div class="rating even-flex">
+              <label>
+                <input type="radio" name="rating-${bookmark.id}" class="js-bookmark-rating-entry" value="1" ${bookmark.rating === 1 ? 'checked' : '' } required/>
+                <span class="icon">★</span>
+              </label>
+              <label>
+                <input type="radio" name="rating-${bookmark.id}" class="js-bookmark-rating-entry" value="2" ${bookmark.rating === 2 ? 'checked' : '' } />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+              </label>
+              <label>
+                <input type="radio" name="rating-${bookmark.id}" class="js-bookmark-rating-entry" value="3" ${bookmark.rating === 3 ? 'checked' : '' } />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>   
+              </label>
+              <label>
+                <input type="radio" name="rating-${bookmark.id}" class="js-bookmark-rating-entry" value="4" ${bookmark.rating === 4 ? 'checked' : '' } />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+              </label>
+              <label>
+                <input type="radio" name="rating-${bookmark.id}" class="js-bookmark-rating-entry" value="5" ${bookmark.rating === 5 ? 'checked' : '' } />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+              </label>
+            </div>
           </div>
         </li>
       `;
     } else {
       return `
         <li class="js-bookmark-item" data-item-id="${bookmark.id}">
-          <div class="top-half">
+          <div class="top-half" tabindex=0>
             <h2>${bookmark.title}</h1>
           </div>
           <div>
-            <p>${bookmark.desc}</p>
-            <button><a href="${bookmark.url}" target="_blank">visit site</a></button>
+            <form class="js-edit-desc">
+              <textarea name="desc" class="js-bookmark-desc-entry" cols="100" rows="5" required>${bookmark.desc}</textarea>
+              <input type=button" value="&#10003;" />
+            </form>
           </div>
-          <div class="bottom-half">
-            <h3>${bookmark.rating}</h3>
+          <div class="bottom-half appart-flex">
+            <div class="rating left-side">
+              <label>
+                <input type="radio" name="rating" class="js-bookmark-rating-entry" value="1" ${bookmark.rating === 1 ? 'checked' : '' } required/>
+                <span class="icon">★</span>
+              </label>
+              <label>
+                <input type="radio" name="rating" class="js-bookmark-rating-entry" value="2" ${bookmark.rating === 2 ? 'checked' : '' } />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+              </label>
+              <label>
+                <input type="radio" name="rating" class="js-bookmark-rating-entry" value="3" ${bookmark.rating === 3 ? 'checked' : '' } />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>   
+              </label>
+              <label>
+                <input type="radio" name="rating" class="js-bookmark-rating-entry" value="4" ${bookmark.rating === 4 ? 'checked' : '' } />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+              </label>
+              <label>
+                <input type="radio" name="rating" class="js-bookmark-rating-entry" value="5" ${bookmark.rating === 5 ? 'checked' : '' } />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+              </label>
+            </div>
+            <div class="even-flex right-side">
+              <i class="fas fa-dumpster-fire js-bookmark-delete"></i>
+              <i class="far fa-check-square js-bookmark-accept-change"></i>
+            </div>
           </div>
-          <button class="js-bookmark-delete">delete</button>
         </li>
       `;
     }
@@ -163,6 +230,7 @@ const handleSubmitNewBookmark = () => {
     api.createBookmark(newBookmarkData)
       .then((newBookmark) => {
         store.addBookmark(newBookmark);
+        store.toggleAddNewBookmark();
         render();
       })
       .catch((error) => {
@@ -179,7 +247,7 @@ const getItemIdFromElement = function (item) {
 };
 
 const handleClickToExpandBookmark = () => {
-  $('#js-bookmark-list').on('click', '.js-bookmark-item', e => {
+  $('#js-bookmark-list').on('click', '.top-half', e => {
     const id = getItemIdFromElement(e.currentTarget);
     const bookmark = store.findById(id);
     store.findAndUpdate(id, {expand: !bookmark.expand});
@@ -219,7 +287,7 @@ $.fn.extend({
   }
 });
 
-const eventListeners = () => {
+const bindEventListeners = () => {
   handleCloseError();
   handleAddNewBookmarkClick();
   handleSubmitNewBookmark();
@@ -229,6 +297,6 @@ const eventListeners = () => {
 };
 
 export default {
-  eventListeners,
+  bindEventListeners,
   render
 };

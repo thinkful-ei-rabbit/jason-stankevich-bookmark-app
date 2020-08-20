@@ -39,7 +39,7 @@ const fetchRequest = (...args) => {
       }
       return data;
     });
-}
+};
 
 export default {
   getBookmarks,

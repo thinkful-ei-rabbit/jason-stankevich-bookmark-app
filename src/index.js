@@ -4,6 +4,7 @@ import $ from 'jquery';
 
 import 'normalize.css';
 import './css/main.css';
+import '@fortawesome/fontawesome-free';
 
 import api from './scripts/api';
 import bookmarkList from './scripts/bookmark-list';
@@ -15,7 +16,7 @@ const main = function () {
       bookmarks.forEach((bookmark) => store.addBookmark(bookmark));
       bookmarkList.render();
     });
-  bookmarkList.eventListeners();
+  bookmarkList.bindEventListeners();
   bookmarkList.render();
 };
 

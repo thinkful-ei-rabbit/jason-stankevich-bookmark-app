@@ -81,17 +81,6 @@ option {
   padding: 1rem;
 }
 
-.shopping-item {
-  display: block;
-  color: grey;
-  font-style: italic;
-  font-size: 20px;
-  margin-bottom: 15px;
-}
-
-.shopping-item__checked {
-  text-decoration: line-through;
-}
 .error-container {
   color: red;
   font-weight: bold;
@@ -104,6 +93,28 @@ option {
 #cancel-error {
   margin-right: 0.5rem;
 }
+
+/*------ input changes -------*/
+.left-side {
+  flex: 1;
+}
+
+.right-side {
+  flex: 1
+}
+
+.top-half {
+  background-color: #c4c4c4;
+  flex: 1;
+  padding: 1rem;
+}
+
+.bottom-half {
+  background-color: #ffffff;
+  flex: 1;
+  padding: 1rem;
+}
+
 
 /*------ input changes -------*/
 input {
