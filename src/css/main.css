@@ -1,0 +1,181 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 95%;
+  margin: 0 auto;
+}
+
+main {
+  margin: 0 auto;
+}
+
+.even-flex {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+h1 {
+  font-size: 6rem;
+  font-variant: small-caps;
+  text-align: center;
+}
+
+h2, h3 {
+  font-size: 2rem;
+  font-variant: small-caps;
+  margin: 0;
+}
+
+button, input[type="text"], select {
+  padding: 5px;
+  font-size: 35px;
+  font-variant: small-caps;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+option {
+  font-size: 10px;
+  font-variant: small-caps;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.bookmark-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.bookmark-list > li {
+  border: 1px solid #C4C4C4;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bookmark-name {
+  background-color: #C4C4C4;
+  margin: 0;
+  padding: 0;
+}
+
+.top-half {
+  background-color: #c4c4c4;
+  flex: 1;
+  padding: 1rem;
+}
+
+.bottom-half {
+  background-color: #ffffff;
+  flex: 1;
+  padding: 1rem;
+}
+
+.shopping-item {
+  display: block;
+  color: grey;
+  font-style: italic;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.shopping-item__checked {
+  text-decoration: line-through;
+}
+.error-container {
+  color: red;
+  font-weight: bold;
+}
+
+.error-container * {
+  display: inline-block;
+}
+
+#cancel-error {
+  margin-right: 0.5rem;
+}
+
+/*------ input changes -------*/
+input {
+  border: none;
+}
+
+button.js-add-bookmark {
+  min-width: 225px;
+}
+
+/*------- star rating --------*/
+.rating {
+  display: inline-block;
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  font-size: 40px;
+}
+
+.rating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.rating label:last-child {
+  position: static;
+}
+
+.rating label:nth-child(1) {
+  z-index: 5;
+}
+
+.rating label:nth-child(2) {
+  z-index: 4;
+}
+
+.rating label:nth-child(3) {
+  z-index: 3;
+}
+
+.rating label:nth-child(4) {
+  z-index: 2;
+}
+
+.rating label:nth-child(5) {
+  z-index: 1;
+}
+
+.rating label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rating label .icon {
+  float: left;
+  color: transparent;
+}
+
+.rating label:last-child .icon {
+  color: #c4c4c4;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon {
+  color: #D4AF37;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+  color: #c4c4c4;
+}
