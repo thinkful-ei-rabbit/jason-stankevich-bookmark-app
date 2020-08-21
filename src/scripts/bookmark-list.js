@@ -4,6 +4,8 @@ import $ from 'jquery';
 import api from './api';
 import store from './store';
 
+import '../css/index.css';
+
 const generateBookmarkAddForm = () => {
   return `
     <form id="js-add-new-bookmark-form" class="js-add-new-bookmark-form">
@@ -64,7 +66,7 @@ const generateBookmarkAddForm = () => {
 
 const generateBookmarkElement = (bookmark, stars) => {
   return `
-    <li class="js-bookmark-item" data-item-id="${bookmark.id}">
+    <li class="js-bookmark-item shadow" data-item-id="${bookmark.id}">
       <div class="top-half" tabindex=0>
         <h2>${bookmark.title}</h2>
       </div>
@@ -84,7 +86,7 @@ const generateExpandedBookmarkElement = (bookmark) => {
       <div class="top-half" tabindex=0>
         <h2>${bookmark.title}</h1>
       </div>
-      <button onclick=" window.open('${bookmark.url}','_blank')">visit site</button>
+      <button class="aliceblue" onclick=" window.open('${bookmark.url}','_blank')">visit site</button>
       <div>
         <textarea name="desc" class="js-bookmark-desc-entry padding" required>${bookmark.desc}</textarea>
       </div>
@@ -122,8 +124,8 @@ const generateExpandedBookmarkElement = (bookmark) => {
           </label>
         </div>
         <div class="right-side">
-          <button class="js-bookmark-save expand-buttons">save</button>
-          <button class="js-bookmark-delete expand-buttons">delete</button>
+          <button class="js-bookmark-save expand-buttons shadow">save</button>
+          <button class="js-bookmark-delete expand-buttons shadow">delete</button>
         </div>
       </div>
     </li>

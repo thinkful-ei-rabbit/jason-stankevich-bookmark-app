@@ -1,3 +1,4 @@
+/*------- general --------*/
 * {
   box-sizing: border-box;
 }
@@ -5,6 +6,7 @@
 body {
   margin: 0 auto;
   padding: 0 20px;
+  width: 100%;
 }
 
 main {
@@ -12,44 +14,20 @@ main {
 }
 
 h1 {
-  font-size: 6rem;
+  font-size: 4rem;
   font-variant: small-caps;
   text-align: center;
   margin: 0 auto .33em;
 }
 
 h2, h3 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-variant: small-caps;
   margin: 0;
 }
 
-button, input[type="text"], select.js-filter-rating {
-  padding: 5px;
-  font-size: 35px;
-  font-variant: small-caps;
-}
-
-select option {
-  font-size: 10px;
-}
-
-option {
-  font-size: 18px;
-  font-variant: small-caps;
-}
-
-button:hover {
-  cursor: pointer;
-}
-
-option {
-  font-size: 10px;
-  font-variant: small-caps;
-}
-
-.hidden {
-  display: none;
+.aliceblue {
+  background-color: aliceblue;
 }
 
 .container {
@@ -74,6 +52,7 @@ option {
   padding: 0;
 }
 
+/*------ error -------*/
 .error-container {
   color: red;
   font-weight: bold;
@@ -124,14 +103,40 @@ input {
   border: none;
 }
 
+button, input[type="text"], select.js-filter-rating {
+  padding: 5px;
+  font-size: 1.5rem;
+  font-variant: small-caps;
+}
+
+.shadow {
+  box-shadow: 5px 5px 5px #c4c4c4;
+}
+
 button.js-add-bookmark {
   min-width: 225px;
 }
 
-textarea{
-  height: 100px;
+select option {
+  font-size: 10px;
+}
+
+option {
+  font-size: 18px;
+  font-variant: small-caps;
+}
+
+button:hover {
+  cursor: pointer;
+}
+select.js-filter-rating {
+  min-width: 225px;
+}
+
+textarea {
+  height: 50px;
   width: 100%;
-  font-size: 1.5rem;
+  font-size: 1rem;
   border: none;
 }
 
@@ -150,7 +155,7 @@ legend {
 
 .expand-buttons {
   margin-left: 25px;
-  min-width: 125px;
+  min-width: 75px;
 }
 
 .padding {
@@ -167,9 +172,9 @@ legend {
 .rating {
   display: inline-block;
   position: relative;
-  height: 40px;
-  line-height: 40px;
-  font-size: 40px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 20px;
 }
 
 .rating label {
@@ -214,6 +219,7 @@ legend {
 .rating label .icon {
   float: left;
   color: transparent;
+  padding-top: 10px;
 }
 
 .rating label:last-child .icon {
@@ -239,4 +245,10 @@ legend {
   color: #D4AF37;
   position: absolute;
   z-index: 2;
+}
+
+@media all and (min-width: 800px) {
+  body {
+    max-width: 800px;
+  }
 }
