@@ -37,15 +37,15 @@ const deleteBookmark = (id) => {
 const fetchRequest = (...args) => {
   let error;
   return fetch(...args)
-    .then(res => {
-      if (!res.ok) {
-        error = { code: res.status };
-        if (!res.headers.get('content-type').includes('json')) {
-          error.message = res.statusText;
+    .then(results => {
+      if (!results.ok) {
+        error = { code: results.status };
+        if (!results.headers.get('content-type').includes('json')) {
+          error.message = results.statusText;
           return Promise.reject(error);
         }
       }
-      return res.json();
+      return results.json();
     })
     .then(data =>{
       if (error) {
