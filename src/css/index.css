@@ -5,21 +5,18 @@
 body {
   width: 95%;
   margin: 0 auto;
+  background-color: white;
 }
 
 main {
   margin: 0 auto;
 }
 
-.even-flex {
-  display: flex;
-  justify-content: space-evenly;
-}
-
 h1 {
   font-size: 6rem;
   font-variant: small-caps;
   text-align: center;
+  margin: 0 auto .33em;
 }
 
 h2, h3 {
@@ -28,9 +25,18 @@ h2, h3 {
   margin: 0;
 }
 
-button, input[type="text"], select {
+button, input[type="text"], select.js-filter-rating {
   padding: 5px;
   font-size: 35px;
+  font-variant: small-caps;
+}
+
+select option {
+  font-size: 10px;
+}
+
+option {
+  font-size: 18px;
   font-variant: small-caps;
 }
 
@@ -69,18 +75,6 @@ option {
   padding: 0;
 }
 
-.top-half {
-  background-color: #c4c4c4;
-  flex: 1;
-  padding: 1rem;
-}
-
-.bottom-half {
-  background-color: #ffffff;
-  flex: 1;
-  padding: 1rem;
-}
-
 .error-container {
   color: red;
   font-weight: bold;
@@ -94,13 +88,14 @@ option {
   margin-right: 0.5rem;
 }
 
-/*------ input changes -------*/
+/*------ flex -------*/
 .left-side {
   flex: 1;
 }
 
 .right-side {
-  flex: 1
+  flex: 3;
+  text-align: end;
 }
 
 .top-half {
@@ -115,6 +110,15 @@ option {
   padding: 1rem;
 }
 
+.even-flex {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.flex-between {
+  display: flex;
+  flex-direction: row;
+}
 
 /*------ input changes -------*/
 input {
@@ -123,6 +127,41 @@ input {
 
 button.js-add-bookmark {
   min-width: 225px;
+}
+
+textarea{
+  height: 100px;
+  width: 100%;
+  font-size: 1.5rem;
+  border: none;
+}
+
+input.js-bookmark-url-entry {
+  width: 100%;
+}
+
+.ninety-percent {
+  width: 90%;
+}
+
+legend {
+  font-size: 1.8rem;
+  font-variant: small-caps;
+}
+
+.expand-buttons {
+  margin-left: 25px;
+  min-width: 125px;
+}
+
+.padding {
+  padding: 25px;
+}
+
+.add-button {
+  max-width: 250px;
+  text-align: center;
+  margin-top: 10px;
 }
 
 /*------- star rating --------*/
@@ -189,4 +228,22 @@ button.js-add-bookmark {
 
 .rating label input:focus:not(:checked) ~ .icon:last-child {
   color: #c4c4c4;
+}
+
+.background-stars {
+  color: #c4c4c4;
+  position: absolute;
+  z-index: 1;
+}
+
+.colored-stars {
+  color: #D4AF37;
+  position: absolute;
+  z-index: 2;
+}
+
+@media all and (min-width: 800px) {
+  body {
+    background-color: green;
+  }
 }

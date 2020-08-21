@@ -3,8 +3,7 @@
 import $ from 'jquery';
 
 import 'normalize.css';
-import './css/main.css';
-import '@fortawesome/fontawesome-free';
+import './css/index.css';
 
 import api from './scripts/api';
 import bookmarkList from './scripts/bookmark-list';
@@ -17,7 +16,6 @@ const main = function () {
       bookmarkList.render();
     });
   bookmarkList.bindEventListeners();
-  bookmarkList.render();
 };
 
 $(main);

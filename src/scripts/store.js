@@ -17,7 +17,6 @@ function addBookmark(bookmark) {
   let expand = {expand:false};
   bookmark = {...bookmark, ...expand}
   this.bookmarks.push(bookmark);
-  console.log(bookmark);
 }
 
 function toggleAddNewBookmark() {

@@ -7,12 +7,27 @@ const getBookmarks = () => {
 };
 
 const createBookmark = (newBookmark) => {
-  return fetchRequest(`${BASE_URL}/bookmarks`, {method:'POST',headers:{'Content-Type': 'application/json'}, body: newBookmark});
+  return fetchRequest(`${BASE_URL}/bookmarks`,
+    {
+      method:'POST',
+      headers:
+      {
+        'Content-Type': 'application/json'
+      }, 
+      body: newBookmark
+    });
 };
 
-const updateBookmark = (id, obj) => {
-  let newBookmark = JSON.stringify(obj);
-  return fetchRequest(`${BASE_URL}/bookmarks/${id}`, {method:'PATCH',headers:{'Content-Type': 'application/json'}, body: newBookmark});
+const updateBookmark = (id, newBookmarkData) => {
+  return fetchRequest(`${BASE_URL}/bookmarks/${id}`,
+    {
+      method:'PATCH',
+      headers:
+    {
+      'Content-Type': 'application/json'
+    }, 
+      body: newBookmarkData
+    });
 };
 
 const deleteBookmark = (id) => {
