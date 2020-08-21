@@ -247,6 +247,11 @@ legend {
   z-index: 2;
 }
 
+.star-size {
+  font-size: 30px;
+  margin-top: 10px
+}
+
 @media all and (min-width: 800px) {
   body {
     max-width: 800px;

@@ -26,7 +26,7 @@ const generateBookmarkAddForm = () => {
         </fieldset>
       </div>
       <div class="flex-between">
-        <div class="rating left-side star-padding">
+        <div class="rating left-side star-size">
           <label>
             <input type="radio" name="rating" class="js-bookmark-rating-entry" value="1" required/>
             <span class="icon">★</span>
