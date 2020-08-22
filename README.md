@@ -16,7 +16,7 @@ A client-side bookmarking application that utilizes a RESTful Web API on the bac
 - Users can select from a dropdown (a <select> element) a "minimum rating" to filter the list by all bookmarks rated at or above the chosen selection
 - Users can edit the rating and description of a bookmark in my list
 
-##### Technical Requirements
+#### Technical Requirements
 - Use fetch for AJAX calls and jQuery for DOM manipulation
 - Use namespacing to adhere to good architecture practices
 - Minimal global variables
