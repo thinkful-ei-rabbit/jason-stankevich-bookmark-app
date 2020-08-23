@@ -6,15 +6,41 @@ import store from './store';
 
 import '../css/index.css';
 
+const generateMainPageLayout = () => {
+  return `
+  <section class="container">
+      <h1>my bookmarks</h1>
+      <div class="error-container shadow"></div>
+      <div class="even-flex js-add-bookmark-button ">
+        <button class='js-add-bookmark shadow'></button>
+        <select class='js-filter-rating shadow'>
+          <option value="0">minimum rating</option>
+          <option value="1">1+ stars</option>
+          <option value="2">2+ stars</option>
+          <option value="3">3+ stars</option>
+          <option value="4">4+ stars</option>
+          <option value="5">5 stars</option>
+        </select>
+      </div>
+      <div id="js-add-new-bookmark" class="js-add-new-bookmark">
+      </div>
+    </section>
+    <section class="container">
+      <ul id="js-bookmark-list" class="bookmark-list">
+      </ul>
+    </section>
+  `;
+};
+
 const generateBookmarkAddForm = () => {
   return `
     <form id="js-add-new-bookmark-form" class="js-add-new-bookmark-form">
-      <div class="even-flex">
-        <fieldset>
+      <div class="even-flex flex-direction">
+        <fieldset class="flex-desktop">
           <legend>title</legend>
           <input type="text" name="title" class="js-bookmark-title-entry" placeholder="e.g., Google" required />
         </fieldset>
-        <fieldset class="ninety-percent">
+        <fieldset class="flex-desktop">
           <legend>url</legend>
           <input type="text" name="url" class="js-bookmark-url-entry" value="https://" placeholder="e.g., https://google.com" required />
         </fieldset>
@@ -22,7 +48,7 @@ const generateBookmarkAddForm = () => {
       <div>
         <fieldset>
           <legend>description</legend>
-          <textarea name="desc" class="js-bookmark-desc-entry" required></textarea>
+          <textarea name="desc" class="js-bookmark-desc-entry textarea-newadd" required></textarea>
         </fieldset>
       </div>
       <div class="flex-between">
@@ -86,9 +112,11 @@ const generateExpandedBookmarkElement = (bookmark) => {
       <div class="top-half" tabindex=0>
         <h2>${bookmark.title}</h1>
       </div>
-      <button class="aliceblue" onclick=" window.open('${bookmark.url}','_blank')">visit site</button>
-      <div>
-        <textarea name="desc" class="js-bookmark-desc-entry padding" required>${bookmark.desc}</textarea>
+      <div class="flex-details">
+        <div class="flex-link">
+          <button class="aliceblue flex-button" onclick=" window.open('${bookmark.url}','_blank')">visit</button>
+        </div>
+          <p name="desc" class="js-bookmark-desc-entry flex-desc" contenteditable required>${bookmark.desc}</p>
       </div>
       <div class="bottom-half flex-between">
         <div class="rating left-side">
@@ -150,6 +178,7 @@ const generateBookmarkListString = (bookmarkList) => {
 
 const render = () => {
   renderError();
+  $('main').html(generateMainPageLayout);
   if (store.addNewBookmark) {
     $('.js-add-new-bookmark').html(generateBookmarkAddForm());
   } else {
@@ -195,14 +224,14 @@ const getItemIdFromElement = function (item) {
 };
 
 const handleAddNewBookmarkClick = () => {
-  $('.js-add-bookmark').click(() => {
+  $('main').on('click','.js-add-bookmark', event => {
     store.toggleAddNewBookmark();
     render();
   });
 };
 
 const handleSubmitNewBookmark = () => {
-  $('.js-add-new-bookmark').on('submit', '.js-add-new-bookmark-form', event => {
+  $('main').on('submit', '.js-add-new-bookmark-form', event => {
     event.preventDefault();
     const newBookmarkData = $(event.target).serializeJson();
     api.createBookmark(newBookmarkData)
@@ -219,7 +248,7 @@ const handleSubmitNewBookmark = () => {
 };
 
 const handleClickToExpandBookmark = () => {
-  $('#js-bookmark-list').on('click', '.top-half', event => {
+  $('main').on('click', '.top-half', event => {
     const bookmarkId = getItemIdFromElement(event.currentTarget);
     const bookmark = store.findById(bookmarkId);
     store.findAndUpdate(bookmarkId, {expand: !bookmark.expand});
@@ -229,7 +258,7 @@ const handleClickToExpandBookmark = () => {
 };
 
 const handleKeyPressToExpandBookmark = () => {
-  $('#js-bookmark-list').on('keydown', '.top-half', event => {
+  $('main').on('keydown', '.top-half', event => {
     if (event.key === 'Enter') {
       const bookmarkId = getItemIdFromElement(event.currentTarget);
       const bookmark = store.findById(bookmarkId);
@@ -241,7 +270,7 @@ const handleKeyPressToExpandBookmark = () => {
 };
 
 const handleDeleteBookmark = () => {
-  $('#js-bookmark-list').on('click', '.js-bookmark-delete', event => {
+  $('main').on('click', '.js-bookmark-delete', event => {
     const bookmarkId = getItemIdFromElement(event.currentTarget);
     api.deleteBookmark(bookmarkId)
       .then(() => {
@@ -256,14 +285,14 @@ const handleDeleteBookmark = () => {
 };
 
 const handleRatingFilterChange = () => {
-  $('.js-filter-rating').change((event) => {
+  $('main').on('change', '.js-filter-rating', event => {
     store.rating = $(event.target).val();
     render();
   });
 };
 
 const handleBookmarkSaveClick = () => {
-  $('#js-bookmark-list').on('click', '.js-bookmark-save', event => {
+  $('main').on('click', '.js-bookmark-save', event => {
     const bookmarkId = getItemIdFromElement(event.currentTarget);
     const newDesc = $('.js-bookmark-desc-entry').val();
     const newRating = $('input[name="rating"]:checked').val();

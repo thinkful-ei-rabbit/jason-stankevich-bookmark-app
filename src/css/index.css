@@ -5,7 +5,7 @@
 
 body {
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 10px;
   width: 100%;
 }
 
@@ -14,7 +14,7 @@ main {
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-variant: small-caps;
   text-align: center;
   margin: 0 auto .33em;
@@ -76,6 +76,23 @@ h2, h3 {
   text-align: end;
 }
 
+.flex-link {
+  flex: 1;
+  margin: auto;
+}
+
+.flex-desc {
+  flex: 3;
+  cursor: pointer;
+  margin: 0 20px;
+  font-size: large;
+  padding: 5px;
+}
+
+.flex-button {
+  padding: 20px;
+}
+
 .top-half {
   background-color: #c4c4c4;
   flex: 1;
@@ -93,9 +110,18 @@ h2, h3 {
   justify-content: space-evenly;
 }
 
-.flex-between {
+.flex-between, .flex-details {
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
+}
+
+.flex-details {
+  margin: 20px 0 0 20px;
+}
+
+.flex-direction {
+  flex-direction: column;
 }
 
 /*------ input changes -------*/
@@ -113,8 +139,8 @@ button, input[type="text"], select.js-filter-rating {
   box-shadow: 5px 5px 5px #c4c4c4;
 }
 
-button.js-add-bookmark {
-  min-width: 225px;
+button.js-add-bookmark, select.js-filter-rating {
+  min-width: 45%;
 }
 
 select option {
@@ -129,23 +155,27 @@ option {
 button:hover {
   cursor: pointer;
 }
-select.js-filter-rating {
-  min-width: 225px;
+
+button:active {
+  transform: translateY(4px);
+  box-shadow: 2px 2px 5px #c4c4c4;
+
 }
 
 textarea {
   height: 50px;
-  width: 100%;
   font-size: 1rem;
   border: none;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-input.js-bookmark-url-entry {
+.textarea-newadd {
   width: 100%;
 }
 
-.ninety-percent {
-  width: 90%;
+.js-bookmark-url-entry, .js-bookmark-title-entry {
+  width: 100%;
 }
 
 legend {
@@ -163,9 +193,12 @@ legend {
 }
 
 .add-button {
-  max-width: 250px;
+  max-width: 50%;
   text-align: center;
   margin-top: 10px;
+}
+fieldset {
+  max-width: 100%;
 }
 
 /*------- star rating --------*/
@@ -255,5 +288,22 @@ legend {
 @media all and (min-width: 800px) {
   body {
     max-width: 800px;
+  }
+
+  button.js-add-bookmark, select.js-filter-rating {
+    width: 225px;
+    min-width: 0px;
+  }
+
+  .flex-direction {
+    flex-direction: row;
+  }
+
+  .flex-desktop {
+    width: 50%;
+  }
+
+  .flex-desc {
+    flex: 4;
   }
 }
