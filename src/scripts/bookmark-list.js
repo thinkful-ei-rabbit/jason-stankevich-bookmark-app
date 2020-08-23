@@ -48,7 +48,7 @@ const generateBookmarkAddForm = () => {
       <div>
         <fieldset>
           <legend>description</legend>
-          <textarea name="desc" class="js-bookmark-desc-entry textarea-newadd" required></textarea>
+          <textarea name="desc" class="js-bookmark-desc-entry textarea-newadd" maxlength="255" required></textarea>
         </fieldset>
       </div>
       <div class="flex-between">
@@ -116,7 +116,7 @@ const generateExpandedBookmarkElement = (bookmark) => {
         <div class="flex-link">
           <button class="aliceblue flex-button" onclick=" window.open('${bookmark.url}','_blank')">visit</button>
         </div>
-          <p name="desc" class="js-bookmark-desc-entry flex-desc" contenteditable required>${bookmark.desc}</p>
+          <textarea name="desc" class="js-bookmark-desc-entry flex-desc" maxlength="255" required>${bookmark.desc}</textarea>
       </div>
       <div class="bottom-half flex-between">
         <div class="rating left-side">

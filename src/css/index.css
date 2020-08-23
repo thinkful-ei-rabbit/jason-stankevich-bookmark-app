@@ -163,11 +163,12 @@ button:active {
 }
 
 textarea {
-  height: 50px;
+  height: 90px;
   font-size: 1rem;
   border: none;
   overflow-x: hidden;
   overflow-y: auto;
+  resize: none;
 }
 
 .textarea-newadd {
